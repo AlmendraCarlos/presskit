@@ -12,8 +12,8 @@ const g3 = { url: "./media/gallery3.jpg" };
 const g4 = { url: "./media/gallery4.jpg" };
 const bioEs = { url: "./press/ALMENDR4C4RLOS-biografia.pdf" };
 const bioEn = { url: "./press/ALMENDR4C4RLOS-biography.pdf" };
-const fotosZip = { url: "./press/ALMENDR4C4RLOS-fotos.zip" };
-const kitZip = { url: "./press/ALMENDR4C4RLOS-press-kit.zip" };
+const fotosZip = { url: "./press/almendr4c4rlos-fotos.zip" };
+const kitZip   = { url: "./press/almendr4c4rlos-press-kit.zip" };
 
 export default function App() {
   return (
