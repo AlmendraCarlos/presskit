@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "es" | "en";
+
 type Dict = Record<string, string>;
 
 const es: Dict = {
@@ -10,6 +11,7 @@ const es: Dict = {
   "nav.press": "Prensa",
   "nav.booking": "Contrataciones",
   "nav.contact": "Contacto",
+
   "hero.tag": "Techno · Melodic Techno",
   "hero.title": "Sonido oscuro. Pulso melódico.",
   "hero.subtitle": "DJ y selector argentino. Sets construidos como viajes: textura, tensión y liberación en pista.",
@@ -57,6 +59,7 @@ const es: Dict = {
   "footer.rights": "Todos los derechos reservados.",
   "footer.role": "DJ · Techno & Melodic Techno",
   "lang.switch": "EN",
+
 };
 
 const en: Dict = {
@@ -66,6 +69,7 @@ const en: Dict = {
   "nav.press": "Press",
   "nav.booking": "Bookings",
   "nav.contact": "Contact",
+
   "hero.tag": "Techno · Melodic Techno",
   "hero.title": "Dark sound. Melodic pulse.",
   "hero.subtitle": "Argentine DJ and selector. Sets built as journeys: texture, tension and release on the dancefloor.",
@@ -127,17 +131,17 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("es");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("lang") as Lang) || null;
+    const saved = (typeof window !== "undefined" && (localStorage.getItem("lang") as Lang)) || null;
     if (saved === "es" || saved === "en") setLangState(saved);
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
+    if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    localStorage.setItem("lang", l);
+    if (typeof window !== "undefined") localStorage.setItem("lang", l);
   };
 
   const t = (k: string) => dicts[lang][k] ?? k;
